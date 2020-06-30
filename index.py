@@ -4,4 +4,15 @@ def read_f(path):
     return data
 
 
-print(read_f('LICENSE'))
+symbol = '#'
+data = []
+
+for line in read_f('README.md'):
+    if line.startswith(symbol):
+        data.append(
+            {
+                'count': line.count(symbol),
+                'str': line[line.count(symbol) + 1:len(line) - 1],
+            }
+        )
+print(data)
