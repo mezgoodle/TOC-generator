@@ -100,7 +100,8 @@ Let people know how they can contribute into your project. A contributing guidel
 
 Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
 
-- https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links
+- [GitLab documentation](https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links)
+- [Stackoverflow page](https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string)
 
 ## License
 
