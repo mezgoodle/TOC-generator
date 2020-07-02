@@ -14,7 +14,7 @@ A little info about your project and/ or overview that explains **what** the pro
 - [Badges](#badges)
 - [Code style](#code-style)
 - [Screenshots](#screenshots)
-- [Tech/framework used](#tech-framework-used)
+- [Tech/framework used](#techframework-used)
 - [Features](#features)
 - [Code Example](#code-example)
 - [Installation](#installation)
