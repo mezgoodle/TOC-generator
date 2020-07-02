@@ -17,13 +17,13 @@ def create_data(path):
                 data.append(
                     {
                         'count': line.count(symbol),
-                        'str': strings.get_line(line, symbol),
+                        'str': strings.edit_line(strings.get_line(line, symbol)),
                     }
                 )
     else:
         raise Exception('This is not a Markdown file')
     return data
 
-
-# for el in data:
-#     print('#' * el['count'] + strings.edit_line(el['str']))
+data = create_data('readme.md')
+for el in data:
+    print('#' * el['count'] + el['str'])
