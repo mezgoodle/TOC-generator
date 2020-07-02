@@ -1,6 +1,7 @@
 import pathlib
 from util import consts
 
+
 def read_f(path):
     with open(path, 'r') as f:
         data = f.readlines()
@@ -10,6 +11,7 @@ def read_f(path):
 symbol = '#'
 data = []
 path = 'README.md'
+
 
 if pathlib.Path(path).suffix.lower() == consts.extension:
     for line in read_f('README.md'):
