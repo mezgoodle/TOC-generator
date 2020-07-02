@@ -2,5 +2,5 @@ EXTENSION = '.md'
 SYMBOL = '#'
 TEST_PATH = 'CODE_OF_CONDUCT.md'
 TEST_NUM = 7
-TEST_PATH_1 = 'readme.md'
+TEST_PATH_1 = 'README.md'
 TEST_NUM_1 = 17
