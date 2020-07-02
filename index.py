@@ -22,6 +22,9 @@ if pathlib.Path(path).suffix.lower() == consts.extension:
                     'str': line[line.count(symbol) + 1:len(line) - 1],
                 }
             )
-    print(data)
 else:
     raise Exception('This is not a Markdown file')
+
+for el in data:
+    # print(el) # DEBUG
+    print('#' * el['count'] + el['str'].lower())
