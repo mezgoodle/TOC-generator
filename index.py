@@ -1,5 +1,5 @@
 import pathlib
-from util import consts
+from util import consts, strings
 
 
 def read_f(path):
@@ -8,23 +8,22 @@ def read_f(path):
     return data
 
 
-symbol = '#'
+symbol = consts.symbol
 data = []
-path = 'README.md'
+path = input()
 
 
 if pathlib.Path(path).suffix.lower() == consts.extension:
-    for line in read_f('README.md'):
+    for line in read_f(path):
         if line.startswith(symbol):
             data.append(
                 {
                     'count': line.count(symbol),
-                    'str': line[line.count(symbol) + 1:len(line) - 1],
+                    'str': strings.get_line(line, symbol),
                 }
             )
 else:
     raise Exception('This is not a Markdown file')
 
 for el in data:
-    # print(el) # DEBUG
-    print('#' * el['count'] + el['str'].lower())
+    print('#' * el['count'] + strings.edit_line(el['str']))

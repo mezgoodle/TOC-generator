@@ -1,1 +1,2 @@
 extension = '.md'
+symbol = '#'
