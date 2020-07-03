@@ -28,12 +28,14 @@ def index():
 def text():
     if request.method == 'GET':
         return redirect(url_for('index'))
+    path = f'{consts.PATH}/test.md'
     data = request.form['text']
-    with open(f'{consts.PATH}/test.md', 'w') as file:
+    with open(path, 'w') as file:
         file.write(data)
     main(consts.PATH)
-    with open(f'{consts.PATH}/test.md', 'r') as file:
+    with open(path, 'r') as file:
         result = file.read()
+    os.remove(path)
     return render_template('index.html', rows=consts.ROWS, input=data, result=result)
 
 
@@ -44,8 +46,15 @@ def file():
     file = request.files['file']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
+        path = f'{consts.PATH}/{filename}'
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return 'All good'
+        with open(path, 'r') as file:
+            data = file.read()
+        main(consts.PATH)
+        with open(path, 'r') as file:
+            result = file.read()
+        os.remove(path)
+        return render_template('index.html', rows=consts.ROWS, input=data, result=result)
 
 
 if __name__ == "__main__":
