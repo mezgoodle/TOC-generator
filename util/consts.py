@@ -1,10 +1,20 @@
-EXTENSION = '.md'
-SYMBOL = '#'
-TEST_PATH = 'CODE_OF_CONDUCT.md'
-TEST_NUM = 7
-TEST_PATH_1 = 'README.md'
-TEST_NUM_1 = 17
-TEST_NUM_2 = 1
-TEST_STR = 'project-title'
 ROWS = 25
-PATH = './'
+TEST_PATH = './tests'
+TEST_DATA = '''- [Project title](#project-title)
+    - [Table of contents](#table-of-contents)
+    - [Motivation](#motivation)
+    - [Build status](#build-status)
+    - [Badges](#badges)
+    - [Code style](#code-style)
+    - [Screenshots](#screenshots)
+    - [Tech/framework used](#techframework-used)
+    - [Features](#features)
+    - [Code Example](#code-example)
+    - [Installation](#installation)
+    - [Fast usage](#fast-usage)
+    - [API Reference](#api-reference)
+    - [Tests](#tests)
+    - [Contribute](#contribute)
+    - [Credits](#credits)
+    - [License](#license)
+'''
