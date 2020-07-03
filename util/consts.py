@@ -1,4 +1,5 @@
 ROWS = 25
+PATH = './'
 TEST_PATH = './tests'
 TEST_DATA = '''- [Project title](#project-title)
     - [Table of contents](#table-of-contents)
