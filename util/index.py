@@ -1,5 +1,7 @@
 import os
 import re
+import pathlib
+from util import consts
 
 REGEX_MARKDOWN_HEADER = re.compile(r'(#+) ?(.+)\n?')
 REGEX_TAG_START = re.compile(r'<!--ts-->', re.IGNORECASE)
@@ -7,7 +9,7 @@ REGEX_TAG_END = re.compile(r'<!--te-->', re.IGNORECASE)
 
 
 def is_markdown_file(file_path):
-    return file_path[-3:].lower() == '.md'
+    return pathlib.Path(file_path).suffix.lower() == consts.EXTENSION
 
 
 def get_filenames(path, selector_lambda=None):
