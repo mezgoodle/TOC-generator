@@ -1,12 +1,33 @@
-from flask import Flask, render_template, url_for, request, redirect
+import os
+from flask import Flask, render_template, url_for, request, redirect, flash
+from werkzeug.utils import secure_filename
+from util.index import main
+from util import consts
+
+UPLOAD_FOLDER = './uploads'
+ALLOWED_EXTENSIONS = {'md'}
+
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/')
 @app.route('/home')
 @app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    if request.method == 'POST':
+        data = request.form['text']
+        with open(consts.PATH, 'w') as file:
+            file.write(data)
+        main(consts.PATH)
+        with open(consts.PATH, 'r') as file:
+            result = file.read()
+        return render_template('index.html', rows=consts.ROWS, result=result)
+    return render_template('index.html', rows=consts.ROWS)
 
 
 if __name__ == "__main__":
