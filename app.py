@@ -39,7 +39,7 @@ def text():
     return render_template('index.html', rows=consts.ROWS, input=data, result=result)
 
 
-@app.route('/file', methods=['GET','POST'])
+@app.route('/file', methods=['GET', 'POST'])
 def file():
     if request.method == 'GET':
         return redirect(url_for('index'))
@@ -58,4 +58,4 @@ def file():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
