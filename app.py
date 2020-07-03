@@ -21,12 +21,12 @@ def allowed_file(filename):
 def index():
     if request.method == 'POST':
         data = request.form['text']
-        with open(f'{consts.PATH}/file.md', 'w') as file:
+        with open(f'{consts.PATH}/toc.md', 'w') as file:
             file.write(data)
         main(consts.PATH)
-        with open(f'{consts.PATH}/file.md', 'r') as file:
+        with open(f'{consts.PATH}/toc.md', 'r') as file:
             result = file.read()
-        return render_template('index.html', rows=consts.ROWS, result=result)
+        return render_template('index.html', rows=consts.ROWS, result=result, input=data)
     return render_template('index.html', rows=consts.ROWS)
 
 
