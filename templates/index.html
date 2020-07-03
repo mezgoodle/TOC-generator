@@ -16,20 +16,10 @@
     <div class="container-fluid">
       <div class="row align-items-start">
         <div class="col">
-          <form>
+          <form method="POST" action=".">
             <div class="mb-3">
               <label for="textarea1" class="form-label">Markdown text</label>
-              <textarea class="form-control" id="textarea1" value=""></textarea>
-            </div>
-            <div class="input-group mb-3">
-              <div class="form-file">
-                <input type="file" class="form-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                <label class="form-file-label" for="inputGroupFile04">
-                  <span class="form-file-text">Choose file...</span>
-                  <span class="form-file-button">Browse</span>
-                </label>
-              </div>
-              <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+              <textarea class="form-control" rows="{{rows}}" id="textarea1" name="text" placeholder="Type your markdown here"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -38,7 +28,7 @@
           <form>
             <div class="mb-3">
               <label for="textarea2" class="form-label">Result</label>
-              <textarea class="form-control" id="textarea2" readonly placeholder="dadas"></textarea>
+              <textarea class="form-control" id="textarea2" rows="{{rows}}" readonly placeholder="{% if result %}{{result}}{% endif %}"></textarea>
             </div>
           </form>
         </div>
