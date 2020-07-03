@@ -1,6 +1,4 @@
-import os
-from flask import Flask, render_template, url_for, request, redirect, flash
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request
 from util.index import main
 from util import consts
 
@@ -9,6 +7,7 @@ ALLOWED_EXTENSIONS = {'md'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 def allowed_file(filename):
     return '.' in filename and \

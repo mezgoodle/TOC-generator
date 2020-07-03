@@ -1,6 +1,5 @@
 import os
 import re
-import sys
 
 REGEX_MARKDOWN_HEADER = re.compile(r'(#+) ?(.+)\n?')
 REGEX_TAG_START = re.compile(r'<!--ts-->', re.IGNORECASE)
