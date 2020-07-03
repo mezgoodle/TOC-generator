@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from util.index import main
 from util import consts
 
@@ -16,18 +16,20 @@ def allowed_file(filename):
 
 @app.route('/home')
 @app.route('/index')
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        data = request.form['text']
-        with open(f'{consts.PATH}/toc.md', 'w') as file:
-            file.write(data)
-        main(consts.PATH)
-        with open(f'{consts.PATH}/toc.md', 'r') as file:
-            result = file.read()
-        return render_template('index.html', rows=consts.ROWS, result=result, input=data)
     return render_template('index.html', rows=consts.ROWS)
 
+@app.route('/text', methods=['POST'])
+def text():
+    data = request.form['text']
+    with open(f'{consts.PATH}/test.md', 'w') as file:
+        file.write(data)
+    main(consts.PATH)
+    with open(f'{consts.PATH}/test.md', 'r') as file:
+        result = file.read()
+    return render_template('index.html', rows=consts.ROWS, input=data, result=result)
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
