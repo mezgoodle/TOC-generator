@@ -52,28 +52,11 @@ def generate_toc_lines(file_lines):
         if match:
             # add spaces based on sub-level, add [Header], then figure out what
             # the git link is for that header and add it
-            toc_entry = '    ' * (len(match.group(1)) - 1) + '* [' + match.group(
+            toc_entry = '    ' * (len(match.group(1)) - 1) + '- [' + match.group(
                 2) + ']' + get_link_tag(match.group(2), link_tags_found)
             toc.append(toc_entry + '\n')
 
     return toc
-
-
-# Returns indexes in the strings where tag starts and where it finishes.
-# Returns -1, -1 if tag not found
-def find_tags(file_lines):
-    current = 0
-    for line in file_lines:
-        if REGEX_TAG_START.match(line):
-            for i in range(current + 1, len(file_lines)):
-                if REGEX_TAG_END.match(file_lines[i]):
-                    return current, i
-            # If we get here we didn't find a matching tag so just move on.
-            return -1, -1
-
-        current += 1
-
-    return -1, -1
 
 
 def main(path):
@@ -84,14 +67,8 @@ def main(path):
         with open(file, 'r') as file_handle:
             lines = file_handle.readlines()
 
-        start, end = find_tags(lines)
+        toc_lines = generate_toc_lines(lines)
 
-        if start != -1:  # Found tags
-            # Remove anything in between the tags (eg. the table of contents)
-            del lines[start + 1:end]
-
-            toc_lines = generate_toc_lines(lines)
-
-            with open(file, 'w') as write_handle:
-                for line in toc_lines:
-                    write_handle.write(line)
+        with open(file, 'w') as write_handle:
+            for line in toc_lines:
+                write_handle.write(line)
