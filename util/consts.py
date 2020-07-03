@@ -20,3 +20,4 @@ TEST_DATA = '''- [Project title](#project-title)
     - [License](#license)
 '''
 EXTENSION = '.md'
+MEMORY_LIMIT = 10 * 1024
