@@ -76,25 +76,22 @@ def find_tags(file_lines):
     return -1, -1
 
 
-def main(file):
-    lines = []
-    with open(file, 'r') as file_handle:
-        lines = file_handle.readlines()
+def main(path):
+    md_files = get_filenames(path, is_markdown_file)
 
-    start, end = find_tags(lines)
+    for file in md_files:
+        lines = []
+        with open(file, 'r') as file_handle:
+            lines = file_handle.readlines()
 
-    if start != -1:  # Found tags
-        # Remove anything in between the tags (eg. the table of contents)
-        del lines[start + 1:end]
+        start, end = find_tags(lines)
 
-        toc_lines = generate_toc_lines(lines)
+        if start != -1:  # Found tags
+            # Remove anything in between the tags (eg. the table of contents)
+            del lines[start + 1:end]
 
-        with open(file, 'w') as write_handle:
-            for i in range(0, start + 1):
-                write_handle.write(lines[i])
+            toc_lines = generate_toc_lines(lines)
 
-            for line in toc_lines:
-                write_handle.write(line)
-
-            for i in range(start + 1, len(lines)):
-                write_handle.write(lines[i])
+            with open(file, 'w') as write_handle:
+                for line in toc_lines:
+                    write_handle.write(line)
