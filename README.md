@@ -103,7 +103,9 @@ Give proper credits. This could be a link to any repo which inspired you to buil
 - [GitLab documentation](https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links)
 - [Stackoverflow page](https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string)
 - [YouTube video](https://www.youtube.com/watch?v=6WruncSoCdI)
+- [Bootstrap 5 documentation](https://v5.getbootstrap.com/docs/5.0)
+- [Flask documentation](https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/)
 
 ## License
 
-MIT © [Yourname]()
+MIT © [mezgoodle](https://github.com/mezgoodle)
