@@ -19,3 +19,4 @@ TEST_DATA = '''- [Project title](#project-title)
     - [Credits](#credits)
     - [License](#license)
 '''
+EXTENSION = '.md'
