@@ -36,7 +36,11 @@ def text():
     with open(path, 'r') as file:
         result = file.read()
     os.remove(path)
-    return render_template('index.html', rows=consts.ROWS, input=data, result=result)
+    return render_template(
+        'index.html',
+        rows=consts.ROWS,
+        input=data,
+        result=result)
 
 
 @app.route('/file', methods=['GET', 'POST'])
@@ -54,7 +58,11 @@ def file():
         with open(path, 'r') as file:
             result = file.read()
         os.remove(path)
-        return render_template('index.html', rows=consts.ROWS, input=data, result=result)
+        return render_template(
+            'index.html',
+            rows=consts.ROWS,
+            input=data,
+            result=result)
 
 
 if __name__ == "__main__":
