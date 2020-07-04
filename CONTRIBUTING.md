@@ -1,14 +1,14 @@
-# Contributing to [`project-name`](https://github.com/mezgoodle/Templates)
+# Contributing to [TOC-generator](https://github.com/mezgoodle/TOC-generator)
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-## How to contribute to `project-name`
+## How to contribute to TOC-generator
 
 #### **Did you find a bug?**
 
-* **Ensure the bug was not already reported** by searching on GitHub under [`link-to-project-issues`](https://github.com/mezgoodle/Templates/issues).
+* **Ensure the bug was not already reported** by searching on GitHub under [issues](https://github.com/mezgoodle/TOC-generator/issues).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/mezgoodle/Templates/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/mezgoodle/TOC-generator/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 * If possible, use the relevant bug report templates to create the issue.
 
@@ -20,13 +20,13 @@
 
 #### **Do you intend to add a new feature or change an existing one?**
 
-* Suggest your change in the [mail to `your-email`](mailto:mezgoodle@gmail.com) and start writing code.
+* Suggest your change in the [mail to me](mailto:mezgoodle@gmail.com) and start writing code.
 
 * Do not open an issue on GitHub until you have collected positive feedback about the change. GitHub issues are primarily intended for bug reports and fixes.
 
 #### **Do you have questions about the source code?**
 
-* Ask any question about how to use Caesar-and-Vigenere-ciphers in the [mail to `your-email`](mailto:mezgoodle@gmail.com).
+* Ask any question about how to use TOC-generator in the [mail to me](mailto:mezgoodle@gmail.com).
 
 Thanks! :heart: :heart: :heart:
 

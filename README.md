@@ -1,14 +1,15 @@
-# Project title
+# TOC generator
 
 [![Build Status](https://img.shields.io/badge/language-python-brightgreen?style=flat-square)](https://www.python.org/)
 
-A little info about your project and/ or overview that explains **what** the project is about.
+Hello everyone! This is the repository of TOC generator on Python.
 
-> Hello everyone! This is the repository of my package on Python "sync-folders".
+> TOC = Table Of Contents
 
 ## Table of contents
 
-- [Project title](#project-title)
+- [TOC generator](#toc-generator)
+- [Table of contents](#table-of-contents)
 - [Motivation](#motivation)
 - [Build status](#build-status)
 - [Badges](#badges)
@@ -19,7 +20,6 @@ A little info about your project and/ or overview that explains **what** the pro
 - [Code Example](#code-example)
 - [Installation](#installation)
 - [Fast usage](#fast-usage)
-- [API Reference](#api-reference)
 - [Tests](#tests)
 - [Contribute](#contribute)
 - [Credits](#credits)
@@ -27,78 +27,124 @@ A little info about your project and/ or overview that explains **what** the pro
 
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+When I improved my README files on GitHub, I learned about _Table of contents_. After reviewing several ways to create it, I have realized that it is either a package for _Node_ or _Python_, or a website on _JavaScript_. So I have decided to create myself generator. Also I wanted that everyone can use my generator, so I installed [_Flask_](https://flask.palletsprojects.com/) :bowtie:.
 
 ## Build status
 
-Build status of continus integration i.e. travis, appveyor etc.
-
-> Here you can see build status of [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)/[continuous deployment](https://en.wikipedia.org/wiki/Continuous_deployment):
+Here you can see build status of [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration):
 
 [![Build Status](https://travis-ci.com/mezgoodle/TOC-generator.svg?branch=master)](https://travis-ci.com/mezgoodle/TOC-generator)
 
 ## Badges
 
-Other badges
-
-[![Build Status](https://img.shields.io/badge/Theme-Template-brightgreen?style=flat-square)](https://www.google.com.ua/)
+[![Build Status](https://img.shields.io/badge/Platform-Flask-brightgreen?style=flat-square)](https://flask.palletsprojects.com/)
 
 ## Code style
 
-If you're using any code style like xo, standard etc. That will help others while contributing to your project.
+I'm using [Codacy](https://www.codacy.com/) for automate my code quality.
 
-> I'm using [Codacy](https://www.codacy.com/) for automate my code quality.
-
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e8f857fb7e34174b782365c596bd095)](https://www.codacy.com/manual/mezgoodle/TOC-generator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mezgoodle/TOC-generator&amp;utm_campaign=Badge_Grade)
  
 ## Screenshots
 
-Include logo/demo screenshot etc.
+- Main page, work with text
+
+![Screenshot 1](https://github.com/mezgoodle/images/blob/master/TOC-generator-1.png)
+
+- Upload the file
+
+![Screenshot 2](https://github.com/mezgoodle/images/blob/master/TOC-generator-2.png)
 
 ## Tech/framework used
 
 **Built with**
-- [Electron](https://electron.atom.io)
+
+- [Flask](https://flask.palletsprojects.com/)
+- [PyTest](https://docs.pytest.org/en/latest/)
 
 ## Features
 
-What makes your project stand out?
-
-> With my package you can **sync** two folders, **manage** logs files, **delete** empty folders and old files, read and create **zip-archives**.
+On the website you can **create** TOC from _text_ or from _file_.
 
 ## Code Example
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+- generate TOC
+
+```python
+def generate_toc_lines(file_lines):
+    toc = []
+    link_tags_found = {}
+
+    for line in file_lines:
+        match = REGEX_MARKDOWN_HEADER.match(line)
+        if match:
+            # add spaces based on sub-level, add [Header], then figure out what
+            # the git link is for that header and add it
+            toc_entry = '    ' * (len(match.group(1)) - 1) + '- [' + match.group(
+                2) + ']' + get_link_tag(match.group(2), link_tags_found)
+            toc.append(toc_entry + '\n')
+```
+
+- upload and work with file
+
+```python
+@app.route('/file', methods=['GET', 'POST'])
+def file():
+    if request.method == 'GET':
+        return redirect(url_for('index'))
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        path = f'{consts.PATH}/{filename}'
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        with open(path, 'r') as file:
+            data = file.read()
+        main(consts.PATH)
+        with open(path, 'r') as file:
+            result = file.read()
+        os.remove(path)
+        return render_template(
+            'index.html',
+            rows=consts.ROWS,
+            input=data,
+            result=result)
+```
 
 ## Installation
 
-Provide step by step series of examples and explanations about how to get a development env running.
+First install [Python](https://www.python.org/downloads/).
+
+> If you don't have *pip*, [install](https://pip.pypa.io/en/stable/installing/) it.
+
+Then type in terminal:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Fast usage
 
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+Move to the project directory and type in terminal:
 
-## API Reference
+```bash
+python app.py
+```
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+Open in browser `http://127.0.0.1:5000/`
 
-> As tables
+> or another port
 
 ## Tests
 
-Describe and show how to run the tests with code examples.
-
-> As screenshot or :smile:I give you the [link](https://github.com/mezgoodle/sync-folders/actions?query=workflow%3A%22Python+package%22) to [GitHub Actions](https://github.com/features/actions), where you can see all my tests.
+I do unit-testing with **pytest** and lint with **flake8**, so [here](https://travis-ci.com/mezgoodle/TOC-generator) you can see the result.
 
 ## Contribute
 
-Let people know how they can contribute into your project. A contributing guideline will be a big plus.
-
-> Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](link).
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](https://github.com/mezgoodle/TOC-generator/blob/master/CONTRIBUTING.md).
 
 ## Credits
 
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
+Videos, links that helped and inspired me to build this project: 
 
 - [GitLab documentation](https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links)
 - [Stackoverflow page](https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string)
