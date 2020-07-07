@@ -51,7 +51,7 @@ I'm using [Codacy](https://www.codacy.com/) for automate my code quality.
 
 ![Screenshot 1](https://github.com/mezgoodle/images/blob/master/TOC-generator-1.png)
 
-- Upload the file
+- Upload the files
 
 ![Screenshot 2](https://github.com/mezgoodle/images/blob/master/TOC-generator-2.png)
 
@@ -64,7 +64,7 @@ I'm using [Codacy](https://www.codacy.com/) for automate my code quality.
 
 ## Features
 
-On the website you can **create** TOC from _text_ or from _file_.
+On the website you can **create** TOC from _text_ or from _files_.
 
 ## Code Example
 
@@ -92,22 +92,26 @@ def generate_toc_lines(file_lines):
 def file():
     if request.method == 'GET':
         return redirect(url_for('index'))
-    file = request.files['file']
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        path = f'{consts.PATH}/{filename}'
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        with open(path, 'r') as file:
-            data = file.read()
-        main(consts.PATH)
-        with open(path, 'r') as file:
-            result = file.read()
-        os.remove(path)
-        return render_template(
-            'index.html',
-            rows=consts.ROWS,
-            input=data,
-            result=result)
+    result, data = '', ''
+    files = request.files.getlist('files')
+    for file in files:
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            data += filename + consts.ENDING
+            result += filename + consts.ENDING
+            path = f'{consts.PATH}/{filename}'
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            with open(path, 'r') as file:
+                data += file.read() + consts.ENDING
+            main(consts.PATH)
+            with open(path, 'r') as file:
+                result += file.read() + consts.ENDING
+            os.remove(path)
+    return render_template(
+        'index.html',
+        rows=consts.ROWS,
+        input=data,
+        result=result)
 ```
 
 ## Installation
