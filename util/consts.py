@@ -21,3 +21,4 @@ TEST_DATA = '''- [Project title](#project-title)
 '''
 EXTENSION = '.md'
 MEMORY_LIMIT = 10 * 1024
+ENDING = '\n'
