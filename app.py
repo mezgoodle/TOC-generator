@@ -47,22 +47,26 @@ def text():
 def file():
     if request.method == 'GET':
         return redirect(url_for('index'))
-    file = request.files['file']
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        path = f'{consts.PATH}/{filename}'
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        with open(path, 'r') as file:
-            data = file.read()
-        main(consts.PATH)
-        with open(path, 'r') as file:
-            result = file.read()
-        os.remove(path)
-        return render_template(
-            'index.html',
-            rows=consts.ROWS,
-            input=data,
-            result=result)
+    result, data = '', ''
+    files = request.files.getlist('files')
+    for file in files:
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            data += filename + consts.ENDING
+            result += filename + consts.ENDING
+            path = f'{consts.PATH}/{filename}'
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            with open(path, 'r') as file:
+                data += file.read() + consts.ENDING
+            main(consts.PATH)
+            with open(path, 'r') as file:
+                result += file.read() + consts.ENDING
+            os.remove(path)
+    return render_template(
+        'index.html',
+        rows=consts.ROWS,
+        input=data,
+        result=result)
 
 
 if __name__ == "__main__":
