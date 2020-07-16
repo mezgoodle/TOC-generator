@@ -49,11 +49,11 @@ I'm using [Codacy](https://www.codacy.com/) for automate my code quality.
 
 - Main page, work with text
 
-![Screenshot 1](https://github.com/mezgoodle/images/blob/master/TOC-generator-1.png)
+![Screenshot 1](https://raw.githubusercontent.com/mezgoodle/images/master/TOC-generator-1.png)
 
 - Upload the files
 
-![Screenshot 2](https://github.com/mezgoodle/images/blob/master/TOC-generator-2.png)
+![Screenshot 2](https://raw.githubusercontent.com/mezgoodle/images/master/TOC-generator-2.png)
 
 ## Tech/framework used
 
