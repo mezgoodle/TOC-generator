@@ -130,3 +130,6 @@ dmypy.json
 
 # User
 .vscode
+
+# Codespaces
+pythonenv3.7
