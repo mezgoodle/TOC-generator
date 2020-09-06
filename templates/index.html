@@ -36,6 +36,7 @@
             <div class="mb-3">
               <label for="textarea2" class="form-label">Result</label>
               <textarea class="form-control" id="textarea2" rows="{{rows}}" placeholder="Table of contents">{% if result %}{{result}}{% endif %}</textarea>
+              <button type="button" onclick="copy()" class="btn btn-success mt-2">Copy text</button>
             </div>
           </form>
         </div>
@@ -44,6 +45,7 @@
 
     {% include 'includes/footer.html' %}
     <!-- Optional JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <!-- Popper.js first, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
