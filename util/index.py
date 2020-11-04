@@ -51,7 +51,7 @@ def generate_toc_lines(file_lines):
         if match:
             # add spaces based on sub-level, add [Header], then figure out what
             # the git link is for that header and add it
-            toc_entry = '    ' * (len(match.group(1)) - 1) + '- [' + match.group(
+            toc_entry = ' ' * (len(match.group(1)) - 1) + '- [' + match.group(
                 2) + ']' + get_link_tag(match.group(2), link_tags_found)
             toc.append(toc_entry + '\n')
 
